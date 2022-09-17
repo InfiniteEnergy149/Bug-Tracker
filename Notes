@@ -1,0 +1,10 @@
+//SQL reference pages
+ - https://www.javaguides.net/2019/08/java-hsql-tutorial-create-read-update-delete-jdbc-examples.html
+ - http://www.javavillage.in/hsql-db-sample-example.php
+jdbc:hsqldb:file:C:/Users/Cdani/eclipse-workspace/BugTracker/src/HSQLDB/DB
+//Update SQL classes to desired SQL requirements
+
+
+Encrypt Password
+
+Cv- databases
