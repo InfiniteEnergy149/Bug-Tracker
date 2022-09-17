@@ -13,9 +13,10 @@ public class Projects {
 	private IntegerProperty projectId = new SimpleIntegerProperty();
 
 	public Projects(Integer projectId, String name, String description ) {
+		this.projectId = new SimpleIntegerProperty(projectId);
 		   this.name = new SimpleStringProperty(name);
 	        this.description = new SimpleStringProperty(description);
-	        this.projectId = new SimpleIntegerProperty(projectId);
+	        
 	        
 	}
 	//PROJECT ID

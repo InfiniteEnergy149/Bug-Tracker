@@ -7,12 +7,12 @@ import java.sql.Statement;
 public class SQLDeleteRecord {
     private static final String deleteTableSQL = "delete from users where id = 1";
 
-    public static void main(String[] argv) throws SQLException {
-        SQLDeleteRecord deleteExample = new SQLDeleteRecord();
-        deleteExample.deleteRecord();
-    }
+   // public static void main(String[] argv) throws SQLException, ClassNotFoundException {
+   //     SQLDeleteRecord deleteExample = new SQLDeleteRecord();
+   //     deleteExample.deleteRecord();
+   // }
 
-    public void deleteRecord() throws SQLException {
+    public void deleteRecord() throws SQLException, ClassNotFoundException {
 
         System.out.println(deleteTableSQL);
         // Step 1: Establishing a Connection

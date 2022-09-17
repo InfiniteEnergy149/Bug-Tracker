@@ -4,27 +4,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 public class SQLInsertRecord {
 
 	// insert employee
 	private static final String INSERT_ACCOUNTS_SQL = "INSERT INTO accounts"
-			+ "  (id, name, email, password,role) VALUES " + " (?, ?, ?, ?, ?);";
+			+ "  (accountId, fullName, email, password,role,projectId) VALUES " + " (?, ?, ?, ?, ?,?);";
 
 	// insert project
 	private static final String INSERT_PROJECTS_SQL = "INSERT INTO projects"
-			+ "  (id, name, email, password,role) VALUES " + " (?, ?, ?, ?, ?);";
+			+ "  (projectId, name, description) VALUES " + " (?, ?, ?);";
 
 	// insert bug
-	private static final String INSERT_BUGS_SQL = "INSERT INTO bugs" + "  (id, name, email, password,role) VALUES "
-			+ " (?, ?, ?, ?, ?);";
+	private static final String INSERT_BUGS_SQL = "INSERT INTO bugs" 
+	+ "  (bugId, bugName, bugDescr, projectId,dateLog,dateCompl,nameLog,nameWorker,complStatus) VALUES " + " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 
 	// DataType = <Accounts>,<Projects> or <Bugs>
 	//Object dataType contains the data to be added
-	public void insertRecord(Object dataType) throws SQLException {
+	public void insertRecord(Object dataType) throws SQLException, ClassNotFoundException {
 		int tableNum;
 		// tableNum refers to which table is chosen(0-accounts,1-projects or 2-bugs)
 		if (dataType instanceof Accounts) {
@@ -43,8 +42,8 @@ public class SQLInsertRecord {
 	
 
 	
-	public void insertRecordData(int tableNum, Object dataType) throws SQLException {
-		System.out.println(INSERT_ACCOUNTS_SQL);
+	public void insertRecordData(int tableNum, Object dataType) throws SQLException, ClassNotFoundException {
+		//System.out.println(INSERT_ACCOUNTS_SQL);
 		// Step 1: Establishing a Connection
 		// Step 2:Create a statement using connection object
 		try {
@@ -65,8 +64,7 @@ public class SQLInsertRecord {
 				preparedStatement = connection.prepareStatement(INSERT_PROJECTS_SQL);
 				preparedStatement.setInt(1, project.getProjectId()); //ID
 				preparedStatement.setString(2, "\"" + project.getName() + "\"");//NAME
-				preparedStatement.setString(3, "\"" + project.getDescripton() + "\"");//DESCRIPTION
-				
+				preparedStatement.setString(3, "\"" + project.getDescripton() + "\"");//DESCRIPTION	
 			} else { // Bugs
 				 Bugs bug = (Bugs) dataType; 
 				preparedStatement = connection.prepareStatement(INSERT_BUGS_SQL);
@@ -81,9 +79,10 @@ public class SQLInsertRecord {
 				preparedStatement.setBoolean(9, bug.getComplStatus());//COMPLETED
 			}
 			
-			System.out.println(preparedStatement);
+			//System.out.println("eghj" + preparedStatement);
 			// Step 3: Execute the query or update query
 			preparedStatement.executeUpdate();
+			connection.close();
 
 		} catch (SQLException e) {
 

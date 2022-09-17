@@ -10,12 +10,12 @@ public class SQLUpdateRecord {
 
     private static final String UPDATE_USERS_SQL = "update users set name = ? where id = ?;";
 
-    public static void main(String[] argv) throws SQLException {
-        SQLUpdateRecord updateStatementExample = new SQLUpdateRecord();
-        updateStatementExample.updateRecord();
-    }
+   // public static void main(String[] argv) throws SQLException, ClassNotFoundException {
+   //     SQLUpdateRecord updateStatementExample = new SQLUpdateRecord();
+   //     updateStatementExample.updateRecord();
+   // }
 
-    public void updateRecord() throws SQLException {
+    public void updateRecord() throws SQLException, ClassNotFoundException {
         System.out.println(UPDATE_USERS_SQL);
         // Step 1: Establishing a Connection
         try (Connection connection = SQLConnection.getConnection();

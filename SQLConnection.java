@@ -12,9 +12,10 @@ public class SQLConnection {
     private static String jdbcUsername = "SA";
     private static String jdbcPassword = "";
     
-    public static Connection getConnection() {
+    public static Connection getConnection() throws ClassNotFoundException {
         Connection connection = null;
         try {
+        	Class.forName("org.hsqldb.jdbc.JDBCDriver");
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
           
         } catch (SQLException e) {

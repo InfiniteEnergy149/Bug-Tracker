@@ -1,0 +1,11 @@
+/*C3*/SET SCHEMA PUBLIC
+DROP TABLE messages
+CREATE TABLE accounts(accountid int, fullname varchar(255), email varchar(255), password varchar(255), role varchar(255), projectid int)
+CREATE TABLE projects(projectid int, name varchar(255), description varchar(255))
+CREATE TABLE bugs(bugid int, bugname varchar(255), bugdescr varchar(255), projectid int, datelog varchar(255), datecompl varchar(255), namelog varchar(255), nameworker varchar(255), complstatus varchar(255))
+INSERT INTO BUGS VALUES(0,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL)
+COMMIT
+INSERT INTO ACCOUNTS VALUES(0,NULL,NULL,NULL,NULL,0)
+COMMIT
+INSERT INTO PROJECTS VALUES(0,NULL,NULL)
+COMMIT
