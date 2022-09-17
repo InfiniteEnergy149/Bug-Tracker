@@ -23,7 +23,7 @@ public class Display {
 	int sceneSize = 500;
 	SQLInsertRecord insertRecord = new SQLInsertRecord();
 	SQLReadRecord readRecord = new SQLReadRecord();
-
+int currentUserAccountId;
 	// Design of introduction scene
 	public Scene introDesign(Stage primaryStage) throws FileNotFoundException {
 
@@ -60,32 +60,75 @@ public class Display {
 		Label title = new Label("Sign In");
 		title.setStyle("-fx-text-fill: black;-fx-font: nor" + "mal bold 20px 'serif'");
 
-		Label usernameTxt = new Label("Username: ");
-		TextField usernameEnter = new TextField();
+		Label emailTxt = new Label("Email: ");
+		TextField emailEnter = new TextField();
 
 		Label passwordTxt = new Label("Password: ");
 		TextField passwordEnter = new TextField();
+		
+		Label text = new Label("Please enter details");
 
 		Button submit = new Button("Submit");
+		submit.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event1) {
+				Boolean checkCredentials = false;
+				//read accounts from database 
+				    //check if username and password matches an existing account
+				try {
+					String emailEntered;
+					String emailFound;
+					String passwordEntered;
+					String passwordFound;
+					
+					for (int i=0;i<readRecord.getLastAccountId()+1;i++) {
+						readRecord.readRecordById(0,i);
+						emailEntered = emailEnter.getText();
+						emailFound = readRecord.getAccountEmail();
+						passwordEntered = passwordEnter.getText();
+						passwordFound = readRecord.getAccountPassword();
+						if (emailEntered.equals(emailFound) && passwordEntered.equals(passwordFound)){
+							checkCredentials = true;
+							currentUserAccountId = readRecord.getAccountId();
+						}
+					}
+					
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				 if (checkCredentials == true) {
+					 primaryStage.setScene(summary(primaryStage));
+					// Send user to summary Pane (currentUserAccountId)
+				 }else {
+					 text.setText("Email and Password don't match records");
+				 }
+				//if exist then save account id in variable and sned to summary scene
+				//if not then send warning that username and password don't match records
+			}
+		});
 
 		// Column, Row
 		gridRoot.add(title, 3, 0);
-		gridRoot.add(usernameTxt, 2, 1);
-		gridRoot.add(usernameEnter, 3, 1);
+		gridRoot.add(emailTxt, 2, 1);
+		gridRoot.add(emailEnter, 3, 1);
 		gridRoot.add(passwordTxt, 2, 2);
 		gridRoot.add(passwordEnter, 3, 2);
 		gridRoot.add(submit, 3, 3);
+		gridRoot.add(text,3,4);
 
+		
+		
 		Scene signInScene = new Scene(gridRoot, sceneSize, sceneSize);
 		signInScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		return signInScene;
 	}
 
 	// Design of bug entry scene
-	public Scene bugEntry(Stage primaryStage) {
+	public Scene summary(Stage primaryStage) {
 		GridPane gridRoot = new GridPane();
 		// VBox vertLayout = new VBox();
-		Label title = new Label("Bug Entry");
+		Label title = new Label("Summary");
 		title.setStyle("-fx-text-fill: black;-fx-font: nor" + "mal bold 20px 'serif'");
 		gridRoot.add(title, 0, 3);
 		// vertLayout.getChildren().addAll(title);
@@ -111,6 +154,7 @@ public class Display {
 		TextField passwordCheckEnter = new TextField();
 		Label roleTxt = new Label("Enter Job Role");
 		TextField roleEnter = new TextField();
+		Label text = new Label("Please enter details");
 		Button submit = new Button("Submit");
 		submit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -130,15 +174,14 @@ public class Display {
 						accountId = 0;
 						insertRecord.insertRecord(account);
 					} catch (SQLException | ClassNotFoundException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
-					primaryStage.setScene(bugEntry(primaryStage));
+					//change scene
+					primaryStage.setScene(signIn(primaryStage));
 				} else {
-					System.out.println(passwordEnter.getText());
-					System.out.println(passwordCheckEnter.getText());
-					System.out.println("passwords don't match");
-//****************Display ERROR TO USER IN JAVAFX
+					//Tell user if passwords don't match
+                    text.setText("passwords don't match");
 				}
 
 			}
@@ -156,6 +199,7 @@ public class Display {
 		gridRoot.add(roleTxt, 1, 6);
 		gridRoot.add(roleEnter, 2, 6);
 		gridRoot.add(submit, 2, 7);
+		gridRoot.add(text, 2, 8);
 
 		Scene newAccountScene = new Scene(gridRoot, sceneSize, sceneSize);
 		newAccountScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

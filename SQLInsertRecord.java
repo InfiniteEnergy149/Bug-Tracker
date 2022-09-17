@@ -54,28 +54,28 @@ public class SQLInsertRecord {
 				 Accounts account = (Accounts) dataType; 
 				 //get last id +1
 				preparedStatement.setInt(1, account.getAccountId()); //ID
-				preparedStatement.setString(2, "\"" + account.getFullName()+ "\"");//NAME
-				preparedStatement.setString(3, "\"" + account.getEmail()  + "\"");//EMAIL
-				preparedStatement.setString(4, "\"" + account.getPassword() + "\"");//PASSWORD
-				preparedStatement.setString(5, "\"" + account.getRole() + "\"");//ROLE
+				preparedStatement.setString(2,  account.getFullName());//NAME
+				preparedStatement.setString(3,  account.getEmail()  );//EMAIL
+				preparedStatement.setString(4,  account.getPassword() );//PASSWORD
+				preparedStatement.setString(5,  account.getRole() );//ROLE
 				preparedStatement.setInt(6, account.getProjectId() ); //PROJECT ID
 			} else if (tableNum == 1) { // Projects
 				 Projects project = (Projects) dataType; 
 				preparedStatement = connection.prepareStatement(INSERT_PROJECTS_SQL);
 				preparedStatement.setInt(1, project.getProjectId()); //ID
-				preparedStatement.setString(2, "\"" + project.getName() + "\"");//NAME
-				preparedStatement.setString(3, "\"" + project.getDescripton() + "\"");//DESCRIPTION	
+				preparedStatement.setString(2,  project.getName() );//NAME
+				preparedStatement.setString(3,  project.getDescripton() );//DESCRIPTION	
 			} else { // Bugs
 				 Bugs bug = (Bugs) dataType; 
 				preparedStatement = connection.prepareStatement(INSERT_BUGS_SQL);
 				preparedStatement.setInt(1, bug.getBugId()); //ID
-				preparedStatement.setString(2, "\"" + bug.getBugName() + "\"");//NAME
-				preparedStatement.setString(3, "\"" + bug.getBugDescr() + "\"");//DESCRIPTION
+				preparedStatement.setString(2,  bug.getBugName() );//NAME
+				preparedStatement.setString(3,  bug.getBugDescr() );//DESCRIPTION
 				preparedStatement.setInt(4, bug.getProjectId());//PROJECTID
-				preparedStatement.setString(5, "\"" + bug.getDateLog()  + "\"");//DATEISSUED
-				preparedStatement.setString(6, "\"" + bug.getDateCompl() + "\"");//DATECOMPLETED
-				preparedStatement.setString(7, "\"" + bug.getNameLog() + "\"");//NAMEISSUED
-				preparedStatement.setString(8, "\"" + bug.getNameWorker() + "\"");//NAMEWORKER
+				preparedStatement.setString(5,  bug.getDateLog()  );//DATEISSUED
+				preparedStatement.setString(6,  bug.getDateCompl() );//DATECOMPLETED
+				preparedStatement.setString(7,  bug.getNameLog() );//NAMEISSUED
+				preparedStatement.setString(8,  bug.getNameWorker() );//NAMEWORKER
 				preparedStatement.setBoolean(9, bug.getComplStatus());//COMPLETED
 			}
 			
