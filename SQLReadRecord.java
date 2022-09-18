@@ -175,7 +175,9 @@ public class SQLReadRecord {
 	// Used to create new account record by finding the new account id -1
 	private static final String LastAccountId_Query = "SELECT TOP 1 accountid FROM accounts ORDER BY accountid DESC;";
 	private static final String LastProjectId_Query = "SELECT TOP 1 projectid FROM projects ORDER BY projectid DESC;";
+	private static final String LastBugId_Query = "SELECT TOP 1 bugid FROM bugs ORDER BY bugid DESC;";
 
+	
 	public int getLastAccountId() throws SQLException, ClassNotFoundException {
 
 		int lastAccountId = 0;
@@ -201,4 +203,18 @@ public class SQLReadRecord {
 		}
 		return lastProjectId;
 	}
+	
+	public int getLastBugId() throws SQLException, ClassNotFoundException {
+
+		int lastBugId = 0;
+		connection = SQLConnection.getConnection();
+		preparedStatement = connection.prepareStatement(LastBugId_Query);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while (resultSet.next()) {
+			lastBugId = resultSet.getInt("bugid"); // ERROR HERE
+			//System.out.println(lastAccountid);
+		}
+		return lastBugId;
+	}
+	
 }

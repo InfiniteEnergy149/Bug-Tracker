@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	Display GUI = new Display();
+	DisplayScenes GUI = new DisplayScenes();
 	
 	//Creating the Graphic User Interface
 	public void start(Stage primaryStage) {
