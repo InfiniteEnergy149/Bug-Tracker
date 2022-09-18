@@ -82,15 +82,15 @@ public class SQLReadRecord {
 				ResultSet rs = preparedStatement.executeQuery();
 
 				while (rs.next()) {
-					int bugId = rs.getInt("bugid");
-					String bugName = rs.getString("bugName");
-					String bugDescr = rs.getString("bugDescr");
-					 int bugProjectId = rs.getInt("projectId");
-					 String bugDateLog = rs.getString("dateLog");
-					 String bugDateCompl = rs.getString("dateCompl");
-					 String bugNameLog = rs.getString("nameLog");
-					 String bugNameWorker = rs.getString("nameWorker");
-					 Boolean bugComplStatus = rs.getBoolean("complStatus");
+					bugId = rs.getInt("bugid");
+					 bugName = rs.getString("bugName");
+					 bugDescr = rs.getString("bugDescr");
+					  bugProjectId = rs.getInt("projectId");
+					  bugDateLog = rs.getString("dateLog");
+					  bugDateCompl = rs.getString("dateCompl");
+					 bugNameLog = rs.getString("nameLog");
+					  bugNameWorker = rs.getString("nameWorker");
+					  bugComplStatus = rs.getBoolean("complStatus");
 					System.out.println(bugId + "," + bugName + "," + bugDescr + "," + bugProjectId + "," + bugDateLog  
 							+ "," + bugDateCompl + "," + bugNameLog + "," + bugNameWorker + "," + bugComplStatus);
 				}
@@ -174,17 +174,31 @@ public class SQLReadRecord {
 	
 	// Used to create new account record by finding the new account id -1
 	private static final String LastAccountId_Query = "SELECT TOP 1 accountid FROM accounts ORDER BY accountid DESC;";
+	private static final String LastProjectId_Query = "SELECT TOP 1 projectid FROM projects ORDER BY projectid DESC;";
 
 	public int getLastAccountId() throws SQLException, ClassNotFoundException {
 
-		int lastAccountid = 0;
+		int lastAccountId = 0;
 		connection = SQLConnection.getConnection();
 		preparedStatement = connection.prepareStatement(LastAccountId_Query);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
-			lastAccountid = resultSet.getInt("accountid"); // ERROR HERE
+			lastAccountId = resultSet.getInt("accountid"); // ERROR HERE
 			//System.out.println(lastAccountid);
 		}
-		return lastAccountid;
+		return lastAccountId;
+	}
+	
+	public int getLastProjectId() throws SQLException, ClassNotFoundException {
+
+		int lastProjectId = 0;
+		connection = SQLConnection.getConnection();
+		preparedStatement = connection.prepareStatement(LastProjectId_Query);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while (resultSet.next()) {
+			lastProjectId = resultSet.getInt("projectid"); // ERROR HERE
+			//System.out.println(lastAccountid);
+		}
+		return lastProjectId;
 	}
 }

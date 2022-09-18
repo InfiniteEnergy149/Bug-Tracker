@@ -52,5 +52,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Cdani/eclipse-workspace/BugTracker/src/hsqldb-2.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cdani/Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
