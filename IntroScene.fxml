@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="203.0" layoutY="82.0" prefHeight="75.0" prefWidth="300.0" text="Bug Tracker" textAlignment="CENTER">
+         <font>
+            <Font name="Bookman Old Style Italic" size="36.0" />
+         </font></Label>
+      <Hyperlink layoutX="255.0" layoutY="200.0" text="Sign In" underline="true">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font></Hyperlink>
+      <Hyperlink layoutX="252.0" layoutY="263.0" text="Sign Up" underline="true">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font></Hyperlink>
+      <ImageView fitHeight="200.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../BT.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Accounts {
+	SQLReadRecord readRecord = new SQLReadRecord();
     private IntegerProperty accountId = new SimpleIntegerProperty();
 	private StringProperty fullName = new SimpleStringProperty();
 	private StringProperty email = new SimpleStringProperty();
@@ -125,5 +126,21 @@ public class Accounts {
 
 		public void setProjectId(Integer value) {
 			projectId.set(value);
+		}
+		
+		public String getProjectName() {
+			String projectName;
+			try {
+				readRecord.readRecordById(1,getProjectId());
+				readRecord.getProjectName();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (readRecord.getProjectName() == null) {
+				projectName = "None Selected";
+			}else {
+				projectName = readRecord.getProjectName();
+			}
+			return projectName;
 		}
 }

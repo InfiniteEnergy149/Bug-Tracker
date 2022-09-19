@@ -12,7 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -71,11 +74,11 @@ public class DisplayScenes {
 	public void setCurrentUserID(int id) {
 		this.currentUserAccountId = id;
 	}
-	
-	public  int getCurrentUserID() {
+
+	public int getCurrentUserID() {
 		return currentUserAccountId;
 	}
-	
+
 	// Design of sign in scene
 	public Scene signIn(Stage primaryStage) {
 		GridPane gridHeader = new GridPane();
@@ -297,36 +300,128 @@ public class DisplayScenes {
 		gridHeader.add(projects, 4, 0);
 		gridHeader.add(bugs, 5, 0);
 		gridHeader.add(logout, 6, 0);
+		try {
+			readRecord.readRecordById(0, currentUserAccountId);
+		} catch (Exception e) {
 
+			e.printStackTrace();
+		}
 		VBox showProfile = new VBox();
 		GridPane gridShow = new GridPane();
 		Label title = new Label("PROFILE");
 		Label notice = new Label("TO DO - READ*,EDIT/UPDATE");
 		Label showName = new Label("NAME: ");
-		TextField Name = new TextField(readRecord.getAccountName());
+		TextField name = new TextField(readRecord.getAccountName());
 		Label showEmail = new Label("EMAIL: ");
-		TextField Email = new TextField(readRecord.getAccountEmail());
+		TextField email = new TextField(readRecord.getAccountEmail());
 		Label showRole = new Label("ROLE: ");
-		TextField Role = new TextField(readRecord.getAccountRole());
+		TextField role = new TextField(readRecord.getAccountRole());
 		Label showPassword = new Label("PASSWORD: ");
-		TextField Password = new TextField(readRecord.getAccountPassword());
+		TextField password = new TextField(readRecord.getAccountPassword());
+		Label showProjectName = new Label("PROJECT: ");
+		int currentAccountProjectId = readRecord.getAccountProjectId();
+		try {
+			readRecord.readRecordById(1, currentAccountProjectId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String currentAccountProjectName;
+		if (readRecord.getProjectName() == null) {
+			currentAccountProjectName = "None selected";
+		} else {
+			currentAccountProjectName = readRecord.getProjectName();
+		}
+		// Label ProjectName = new Label(currentAccountProjectName);
+
 		Button updateRecords = new Button("Update Records");
+		Button deleteAccount = new Button("Delete Account");
+
+		// Change Project
+		// Label, listView, Change Project n
+		Label listTitle = new Label("Project Options");
+		ComboBox<String> listOfProjectNames = new ComboBox();// arrayList of project names
+
+		int defaultIndex = readRecord.getAccountProjectId();
+		// Set default value
+		listOfProjectNames.setValue(currentAccountProjectName);
+		listOfProjectNames.setPrefSize(200, 100);
+		ArrayList<String> projListItems = new ArrayList<>();
+		
+
+		try {
+			projListItems.add("None Selected");
+			for (int i = 1; i < readRecord.getLastProjectId() + 1; i++) {
+				readRecord.readRecordById(1, i);
+				projListItems.add(readRecord.getProjectName());
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// Update ListView
+
+		ObservableList<String> listOfProjectsUpdate = FXCollections.observableArrayList(projListItems);
+		listOfProjectNames.setItems(listOfProjectsUpdate);
+
+	
+		updateRecords.setOnAction(event -> {
+            
+			
+			//UPDATE PROJECT
+			// if selected combo box != current project
+			// update account project
+			int comboIndex = 0;
+			for (int i = 0; i < projListItems.size();i++) {
+				if (projListItems.get(i)== listOfProjectNames.getValue()) {
+					comboIndex = i;
+				}
+			}
+			
+				// update account project
+				//System.out.println("****************" + name.getText());
+				Accounts text = new Accounts(readRecord.getAccountId(), name.getText(), email.getText(), password.getText(),role.getText(),comboIndex);
+				try {
+					updateRecord.updateRecord(text);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				//projectId = comboIndex
+		});
+
+//***************DELETING THE CURRENT ACCOUNT
+		// Correct current user account id
+		// setCurrentUserID(getCurrentUserID()-1);
+		// logout
+		
+		deleteAccount.setStyle(" -fx-background-color: red;");
+		boolean deleteCheck = false;
+		deleteAccount.setOnAction(event -> {
+			
+			Accounts thisAccount = new Accounts(readRecord.getAccountId(), readRecord.getAccountName(), readRecord.getAccountEmail(), readRecord.getAccountPassword(),readRecord.getAccountRole(),readRecord.getAccountProjectId());
+			try {
+					deleteRecord.deleteRecord(thisAccount);
+				primaryStage.setScene(introDesign(primaryStage));
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+		});
 
 		gridShow.add(showName, 1, 1);
-		gridShow.add(Name, 2, 1);
+		gridShow.add(name, 2, 1);
 		gridShow.add(showEmail, 1, 2);
-		gridShow.add(Email, 2, 2);
+		gridShow.add(email, 2, 2);
 		gridShow.add(showRole, 1, 3);
-		gridShow.add(Role, 2, 3);
+		gridShow.add(role, 2, 3);
 		gridShow.add(showPassword, 1, 4);
-		gridShow.add(Password, 2, 4);
-		gridShow.add(updateRecords, 1, 5);
+		gridShow.add(password, 2, 4);
+		gridShow.add(showProjectName, 1, 5);
+		gridShow.add(listOfProjectNames, 2, 5);
+		gridShow.add(updateRecords, 1, 6);
+		gridShow.add(deleteAccount, 1, 7);
 		
-		
-//***************DELETING THE CURRENT ACCOUNT
-		//Correct current user account id 
-		//setCurrentUserID(getCurrentUserID()-1);
-		//logout
 
 		showProfile.getChildren().setAll(gridHeader, title, notice, gridShow);
 
@@ -335,6 +430,7 @@ public class DisplayScenes {
 		return profileScene;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Scene accounts(Stage primaryStage) {
 		GridPane gridHeader = new GridPane();
 
@@ -373,6 +469,7 @@ public class DisplayScenes {
 			e.printStackTrace();
 		}
 
+		VBox vertLayout = new VBox();
 		gridHeader.add(empty, 0, 0);
 		gridHeader.add(summary, 1, 0);
 		gridHeader.add(profile, 2, 0);
@@ -381,7 +478,72 @@ public class DisplayScenes {
 		gridHeader.add(bugs, 5, 0);
 		gridHeader.add(logout, 6, 0);
 
-		Scene accountsScene = new Scene(gridHeader, sceneSize, sceneSize);
+		TextField searchBar = new TextField("Search Account");
+		Button searchButton = new Button("Search");
+		// Search button changes order of searches
+
+		GridPane gridLayout = new GridPane();
+		gridLayout.add(searchBar, 0, 0);
+		gridLayout.add(searchButton, 1, 0);
+
+		HBox horList = new HBox();
+
+		// If projectid = 0 then reurn string "None selected"
+
+		TableView<Accounts> accountList = new TableView<>();
+		ArrayList<Accounts> accountItems = new ArrayList<>();
+
+		// Fill arrayList with data from database
+		try {
+			for (int i = 1; i < readRecord.getLastAccountId() + 1; i++) {
+				readRecord.readRecordById(0, i);
+				accountItems.add(new Accounts(readRecord.getAccountId(), readRecord.getAccountName(),
+						readRecord.getAccountEmail(), readRecord.getAccountPassword(), readRecord.getAccountRole(),
+						readRecord.getAccountProjectId()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		// Update TableView
+		ObservableList<Accounts> accountListUpdate = FXCollections.observableList(accountItems);
+		accountList.setItems(accountListUpdate);
+
+		TableColumn<Accounts, String> colName = new TableColumn<Accounts, String>("Name");
+		colName.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getFullName()));
+
+		TableColumn<Accounts, String> colEmail = new TableColumn<Accounts, String>("Email");
+		colEmail.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getEmail()));
+
+		TableColumn<Accounts, String> colRole = new TableColumn<Accounts, String>("Job Role");
+		colRole.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getRole()));
+
+		TableColumn<Accounts, String> colProject = new TableColumn<Accounts, String>("Project Name");
+		colProject.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProjectName()));
+
+		accountList.getColumns().setAll(colName, colEmail, colRole, colProject);
+
+		accountList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+		// ObservableList<Accounts> accountListUpdate =
+		// FXCollections.observableList(accountItems);
+		accountList.setItems(accountListUpdate);
+
+		//SEARCH BAR
+				searchButton.setOnAction(event -> {
+					try {
+						searchBar.getText();
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				});
+		
+		// horList.getChildren().setAll(accountList,gridLayoutTwo);
+
+		vertLayout.getChildren().setAll(gridHeader, gridLayout, accountList);
+		Scene accountsScene = new Scene(vertLayout, sceneSize, sceneSize);
 		accountsScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		return accountsScene;
 	}
@@ -502,7 +664,6 @@ public class DisplayScenes {
 		gridLayout.add(addProject, 4, 1);
 		gridLayout.add(notice, 1, 2);
 
-		
 		// When row is clicked twice edit button turns yellow and can edit
 		// When row is clicked once edit button turns grey and cant edit
 		// When row is clicked and editProject is clicked then
@@ -515,97 +676,93 @@ public class DisplayScenes {
 		Label editNoticeOne = new Label("Double click row to select edit");
 		Label editNoticeTwo = new Label("Single click row to unselect edit");
 		Button deleteProject = new Button("Delete project");
-		
 
-		
 		projectList.setRowFactory(tv -> {
-		    TableRow<Projects> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
-		             && event.getClickCount() == 2) {
-		        	editProject.setStyle(" -fx-background-color: yellow;");
-		        	editProject.setText("Edit Row");
-		        	deleteProject.setStyle(" -fx-background-color: yellow;");
-		        	deleteProject.setText("Delete");
-		        	clickedProjectId = row.getItem().getProjectId();
-		        }
-		    
-		    if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
-		             && event.getClickCount() == 1) {
-		        	editProject.setStyle(" -fx-background-color: grey;");
-		        	editProject.setText("Edit Project");
-		        	deleteProject.setStyle(" -fx-background-color: grey;");
-		        	deleteProject.setText("Edit Project");
-		        }
-		    });
-		    return row;
+			TableRow<Projects> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+					editProject.setStyle(" -fx-background-color: yellow;");
+					editProject.setText("Edit Row");
+					deleteProject.setStyle(" -fx-background-color: yellow;");
+					deleteProject.setText("Delete");
+					clickedProjectId = row.getItem().getProjectId();
+				}
+
+				if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+					editProject.setStyle(" -fx-background-color: grey;");
+					editProject.setText("Edit Project");
+					deleteProject.setStyle(" -fx-background-color: grey;");
+					deleteProject.setText("Edit Project");
+				}
+			});
+			return row;
 		});
-		
-				editProject.setOnAction(new EventHandler<ActionEvent>() {
+
+		editProject.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event1) {
-			if (editProject.getText().equals("Edit Row")) {
-				//Update row
-				Projects newProjectItem = new Projects(clickedProjectId,editNameEnter.getText(),editDescriptionEnter.getText());
-			    try {
-					updateRecord.updateRecord(newProjectItem);
-				} catch (Exception e) {
-					e.printStackTrace();
+				if (editProject.getText().equals("Edit Row")) {
+					// Update row
+					Projects newProjectItem = new Projects(clickedProjectId, editNameEnter.getText(),
+							editDescriptionEnter.getText());
+					try {
+						updateRecord.updateRecord(newProjectItem);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					projectItems.set(clickedProjectId - 1, newProjectItem);
+					projectList.setItems(projectListUpdate);
+					projectList.refresh();
 				}
-			    projectItems.set(clickedProjectId-1,newProjectItem);
-			    projectList.setItems(projectListUpdate);
-				projectList.refresh();
-			}
 			}
 		});
-		
-				
-				deleteProject.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event1) {
-					if (editProject.getText().equals("Edit Row")) {
-						//Update row
-						ArrayList<Projects> newProjectItems = new ArrayList<>();
-						Projects newProjectItem = new Projects(clickedProjectId,editNameEnter.getText(),editDescriptionEnter.getText());
 
-						//delete record
-						try {
-							deleteRecord.deleteRecord(newProjectItem);
-						} catch (Exception e2) {
-							e2.printStackTrace();
-						}
-						
-						//Make projectItems read from updated database
-											
-						
-						try {
-							projectItems.remove(0);
-							//reset readRecord	
-							readRecord.readRecordById(1, 1);
-							for (int i = 0; i < readRecord.getLastProjectId() ; i++) {
-								readRecord.readRecordById(1, i+1);
-								newProjectItems.add(new Projects(readRecord.getProjectId(), readRecord.getProjectName(),
-										readRecord.getProjectDescription()));
-								projectItems.set(i, newProjectItems.get(i));
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
+		deleteProject.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event1) {
+				if (editProject.getText().equals("Edit Row")) {
+					// Update row
+					ArrayList<Projects> newProjectItems = new ArrayList<>();
+					Projects newProjectItem = new Projects(clickedProjectId, editNameEnter.getText(),
+							editDescriptionEnter.getText());
 
+					// delete record
+					try {
+						deleteRecord.deleteRecord(newProjectItem);
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+
+					// Make projectItems read from updated database
+
+					try {
+						projectItems.remove(0);
+						// reset readRecord
+						readRecord.readRecordById(1, 1);
+						for (int i = 0; i < readRecord.getLastProjectId(); i++) {
+							readRecord.readRecordById(1, i + 1);
+							newProjectItems.add(new Projects(readRecord.getProjectId(), readRecord.getProjectName(),
+									readRecord.getProjectDescription()));
+							projectItems.set(i, newProjectItems.get(i));
 						}
-					    projectList.setItems(projectListUpdate);
-						projectList.refresh();
+					} catch (Exception e) {
+						e.printStackTrace();
+
 					}
-					}
-				});
+					projectList.setItems(projectListUpdate);
+					projectList.refresh();
+				}
+			}
+		});
 
 		gridLayout.add(editNameTxt, 0, 3);
 		gridLayout.add(editNameEnter, 1, 3);
 		gridLayout.add(editDescriptionTxt, 2, 3);
 		gridLayout.add(editDescriptionEnter, 3, 3);
 		gridLayout.add(editProject, 4, 3);
-        gridLayout.add(editNoticeOne, 1, 4);
-        gridLayout.add(editNoticeTwo, 3, 4);
-        gridLayout.add(deleteProject,1,5);
+		gridLayout.add(editNoticeOne, 1, 4);
+		gridLayout.add(editNoticeTwo, 3, 4);
+		gridLayout.add(deleteProject, 1, 5);
 
 		// gridHeader.add(projectList, 1, 1);
 		// addNewProject.getChildren().setAll(nameTxt, nameEnter, descriptionTxt,
