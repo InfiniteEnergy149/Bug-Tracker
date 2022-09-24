@@ -2,6 +2,7 @@ package application;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -41,36 +44,17 @@ public class DisplayScenes {
 	SQLDeleteRecord deleteRecord = new SQLDeleteRecord();
 	int currentUserAccountId;
 	int clickedProjectId;
+Stage primaryStage;
+
 
 	// Design of introduction scene
-	public Scene introDesign(Stage primaryStage) throws FileNotFoundException {
-		int sceneSize = 500;
-		BorderPane root = new BorderPane();
-
-		VBox intro = new VBox();
-		Label title = new Label("Bug Tracker");
-		title.setStyle("-fx-text-fill: white;-fx-font: nor" + "mal bold 20px 'serif'");
-		// Call image from files
-		FileInputStream input = new FileInputStream("C:/Users/Cdani/eclipse-workspace/BugTracker/src/BT.png");
-		Image imageLogo = new Image(input);
-		ImageView logo = new ImageView(imageLogo);
-		// Sign In Scene
-		Button employeeSignIn = new Button("Employee Sign In");
-		employeeSignIn.setOnAction(event -> primaryStage.setScene(signIn(primaryStage)));
-
-		// New Account Scene
-		Button newAccount = new Button("Add new Account");
-		newAccount.setOnAction(event -> primaryStage.setScene(newAccount(primaryStage)));
-		intro.setSpacing(30);
-		intro.getChildren().addAll(title, logo, employeeSignIn, newAccount);
-		root.setStyle("-fx-background-color: blue;");
-
-		root.setCenter(intro);
-		Scene introScene = new Scene(root, sceneSize, sceneSize);
-		introScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	/*public Scene introDesign(Stage primaryStage) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
+		Scene introScene = new Scene(root);
 		return introScene;
-	}
+	}*/
 
+	
 	public void setCurrentUserID(int id) {
 		this.currentUserAccountId = id;
 	}
@@ -81,6 +65,7 @@ public class DisplayScenes {
 
 	// Design of sign in scene
 	public Scene signIn(Stage primaryStage) {
+		System.out.println("I Arrived");
 		GridPane gridHeader = new GridPane();
 
 		Label title = new Label("Sign In");
@@ -148,7 +133,7 @@ public class DisplayScenes {
 	}
 
 	// Design of new account scene
-	public Scene newAccount(Stage primaryStage) {
+	public Scene signUp(Stage primaryStage) {
 		GridPane gridHeader = new GridPane();
 
 		Label title = new Label("New Account");
@@ -240,11 +225,11 @@ public class DisplayScenes {
 		Button logout = new Button("Log out");
 		logout.setStyle(" -fx-background-color: cyan;");
 		logout.setOnAction(event -> {
-			try {
-				primaryStage.setScene(introDesign(primaryStage));
-			} catch (FileNotFoundException e) {
+			/*try {
+				//primaryStage.setScene(introDesign(primaryStage));
+			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		});
 
 		Label empty = new Label("                     ");
@@ -285,11 +270,11 @@ public class DisplayScenes {
 		Button logout = new Button("Log out");
 		logout.setStyle(" -fx-background-color: cyan;");
 		logout.setOnAction(event -> {
-			try {
-				primaryStage.setScene(introDesign(primaryStage));
-			} catch (FileNotFoundException e) {
+			/*try {
+				//primaryStage.setScene(introDesign(primaryStage));
+			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		});
 
 		Label empty = new Label("                     ");
@@ -402,7 +387,7 @@ public class DisplayScenes {
 			Accounts thisAccount = new Accounts(readRecord.getAccountId(), readRecord.getAccountName(), readRecord.getAccountEmail(), readRecord.getAccountPassword(),readRecord.getAccountRole(),readRecord.getAccountProjectId());
 			try {
 					deleteRecord.deleteRecord(thisAccount);
-				primaryStage.setScene(introDesign(primaryStage));
+			//	primaryStage.setScene(introDesign(primaryStage));
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -455,11 +440,11 @@ public class DisplayScenes {
 		Button logout = new Button("Log out");
 		logout.setStyle(" -fx-background-color: cyan;");
 		logout.setOnAction(event -> {
-			try {
-				primaryStage.setScene(introDesign(primaryStage));
-			} catch (FileNotFoundException e) {
+			/*try {
+			//	primaryStage.setScene(introDesign(primaryStage));
+			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		});
 		Label empty = new Label("                     ");
 
@@ -573,11 +558,11 @@ public class DisplayScenes {
 		Button logout = new Button("Log out");
 		logout.setStyle(" -fx-background-color: cyan;");
 		logout.setOnAction(event -> {
-			try {
-				primaryStage.setScene(introDesign(primaryStage));
-			} catch (FileNotFoundException e) {
+			/*try {
+			//	primaryStage.setScene(introDesign(primaryStage));
+			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		});
 
 		TableView<Projects> projectList = new TableView<>();
@@ -797,11 +782,11 @@ public class DisplayScenes {
 		Button logout = new Button("Log out");
 		logout.setStyle(" -fx-background-color: cyan;");
 		logout.setOnAction(event -> {
-			try {
-				primaryStage.setScene(introDesign(primaryStage));
-			} catch (FileNotFoundException e) {
+			/*try {
+			//	primaryStage.setScene(introDesign(primaryStage));
+			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		});
 
 		Label empty = new Label("                     ");

@@ -23,16 +23,17 @@
                   <Font name="Bodoni MT Black" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="summaryBtn" mnemonicParsing="false" prefHeight="63.0" prefWidth="170.0" style="-fx-background-color: yellow;" text="Summary" />
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" style="-fx-background-color: PALETURQUOISE;" text="Profile" />
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="170.0" style="-fx-background-color: skyblue;" text="Accounts" />
-            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Projects" />
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="175.0" style="-fx-background-color: skyblue;" text="Bugs" />
+            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="138.0" style="-fx-background-color: yellow;" text="Summary" />
+            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="50.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Profile" />
+            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Accounts" />
+            <Button mnemonicParsing="false" onAction="#toProject" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Projects" />
+            <Button mnemonicParsing="false" onAction="#toBug" prefHeight="53.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Bugs" />
+            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: cyan;" text="Log Out" />
          </children>
       </VBox>
       <HBox layoutX="137.0" prefHeight="78.0" prefWidth="464.0" style="-fx-background-color: steelblue;">
          <children>
-            <Label prefHeight="83.0" prefWidth="463.0" text="                      Profile" textAlignment="CENTER">
+            <Label prefHeight="83.0" prefWidth="463.0" text="                  Summary" textAlignment="CENTER">
                <font>
                   <Font name="Bodoni MT Black" size="24.0" />
                </font>
