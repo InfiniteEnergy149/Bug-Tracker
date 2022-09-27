@@ -7,14 +7,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController">
+<Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController">
    <children>
-      <VBox alignment="CENTER" layoutY="-2.0" prefHeight="402.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
+      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="402.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
          <children>
             <ImageView fitHeight="93.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,28 +33,25 @@
             <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: cyan;" text="Log Out" />
          </children>
       </VBox>
-      <HBox layoutX="137.0" prefHeight="78.0" prefWidth="464.0">
-         <children>
-            <Label prefHeight="68.0" prefWidth="463.0" style="-fx-background-color: steelblue;" text="                      Projects" textAlignment="CENTER">
-               <font>
-                  <Font name="Bodoni MT Black" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <TableView layoutX="152.0" layoutY="98.0" prefHeight="209.0" prefWidth="434.0">
-        <columns>
-          <TableColumn prefWidth="125.60002136230469" text="Name" />
-          <TableColumn prefWidth="309.59991455078125" text="Description" />
-        </columns>
+      <Label layoutX="132.0" prefHeight="68.0" prefWidth="469.0" style="-fx-background-color: steelblue;" text="                      Projects" textAlignment="CENTER">
+         <font>
+            <Font name="Bodoni MT Black" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="209.0" layoutY="67.0" prefHeight="26.0" prefWidth="242.0" text="Double click = select, single click = deselect" />
+      <TableView fx:id="projectList" layoutX="152.0" layoutY="96.0" prefHeight="209.0" prefWidth="434.0">
+         <columns>
+            <TableColumn fx:id="tbName" prefWidth="125.60002136230469" text="Name" />
+            <TableColumn fx:id="tbDescription" prefWidth="309.59991455078125" text="Description" />
+         </columns>
       </TableView>
-      <TextField layoutX="227.0" layoutY="320.0" />
-      <TextField layoutX="227.0" layoutY="354.0" prefHeight="26.0" prefWidth="242.0" />
-      <Button layoutX="386.0" layoutY="314.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="89.0" text="Add project" />
-      <Button layoutX="479.0" layoutY="314.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="102.0" text="Update Project" />
-      <Label layoutX="150.0" layoutY="324.0" text="Name: " />
-      <Label layoutX="150.0" layoutY="358.0" text="Description: " />
-      <Button layoutX="486.0" layoutY="363.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Delete projects" />
-      <Label layoutX="248.0" layoutY="72.0" prefHeight="26.0" prefWidth="242.0" text="Double click = select, single click = deselect" />
+      <TextField fx:id="nameEnter" layoutX="223.0" layoutY="312.0" />
+      <Label layoutX="183.0" layoutY="314.0" text="Name: " />
+      <Button layoutX="377.0" layoutY="313.0" mnemonicParsing="false" onAction="#addProject" prefHeight="32.0" prefWidth="89.0" text="Add project" />
+      <Button fx:id="updateBtn" layoutX="479.0" layoutY="313.0" mnemonicParsing="false" onAction="#updateProject" prefHeight="32.0" prefWidth="102.0" text="Update Project" />
+      <Button fx:id="deleteBtn" layoutX="482.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteProject" style="-fx-background-color: red;" text="Delete projects" />
+      <TextField fx:id="descriptionEnter" layoutX="224.0" layoutY="350.0" prefHeight="26.0" prefWidth="242.0" />
+      <Label fx:id="notice" layoutX="255.0" layoutY="375.0" prefHeight="18.0" prefWidth="203.0" text="Name and Description must be used" />
+      <Label layoutX="158.0" layoutY="354.0" text="Description: " />
    </children>
-</AnchorPane>
+</Pane>

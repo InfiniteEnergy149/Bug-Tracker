@@ -66,9 +66,9 @@ public class SQLDeleteRecord {
 			//"update accounts set fullName = ?, email = ?, password = ?,role = ?,projectId = ? where accountid =?";
 			Accounts account = (Accounts) dataType;
 			for (int i = account.getAccountId() + 1; i < readRecord.getLastAccountId() + 1; i++) {
-				readRecord.readRecordById(0, i);
-				newAccount = new Accounts(i - 1, readRecord.getAccountName(), readRecord.getAccountEmail(),
-						readRecord.getAccountPassword(), readRecord.getAccountRole(), readRecord.getAccountProjectId());
+				readRecord.setReadRecordById(0, i);
+				newAccount = new Accounts(i - 1, readRecord.getAccount().getFullName(), readRecord.getAccount().getEmail(),
+						readRecord.getAccount().getPassword(), readRecord.getAccount().getRole(), readRecord.getAccount().getProjectId());
 				updateRecord.updateRecord(newAccount);
 			}
 			
@@ -78,8 +78,8 @@ public class SQLDeleteRecord {
 
 			Projects project = (Projects) dataType;
 			for (int i = project.getProjectId() + 1; i < readRecord.getLastProjectId() + 1; i++) {
-				readRecord.readRecordById(1, i);
-				newProject = new Projects(i - 1, readRecord.getProjectName(), readRecord.getProjectDescription());
+				readRecord.setReadRecordById(1, i);
+				newProject = new Projects(i - 1, readRecord.getProject().getName(), readRecord.getProject().getDescripton());
 				updateRecord.updateRecord(newProject);
 			}
 
@@ -88,10 +88,10 @@ public class SQLDeleteRecord {
 
 			Bugs bug = (Bugs) dataType;
 			for (int i = bug.getBugId() + 1; i < readRecord.getLastBugId() + 1; i++) {
-				readRecord.readRecordById(2, i);
-				newBug = new Bugs(i - 1, readRecord.getBugName(), readRecord.getBugDescr(),
-						readRecord.getBugProjectId(), readRecord.getBugDateLog(), readRecord.getBugDateCompl()
-						,readRecord.getBugNameLog(), readRecord.getBugNameWorker(), readRecord.getBugComplStatus());
+				readRecord.setReadRecordById(2, i);
+				newBug = new Bugs(i - 1, readRecord.getBug().getBugName(), readRecord.getBug().getBugDescr(),
+						readRecord.getBug().getProjectId(), readRecord.getBug().getDateLog(), readRecord.getBug().getDateCompl()
+						,readRecord.getBug().getNameLog(), readRecord.getBug().getNameWorker(), readRecord.getBug().getComplStatus());
 				updateRecord.updateRecord(newBug);
 			}
 		}

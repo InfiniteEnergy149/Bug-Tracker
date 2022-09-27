@@ -39,7 +39,7 @@ public class SQLReadRecord {
 	private Boolean bugComplStatus;
 
 	// int datatype = 0-accounts,1-projects,2-bugs
-	public void readRecordById(int dataType, int dataTypeid) throws Exception {
+	public void setReadRecordById(int dataType, int dataTypeid) throws Exception {
 	
 		try {
 			Connection connection = SQLConnection.getConnection();
@@ -104,73 +104,22 @@ public class SQLReadRecord {
 		// Step 4: try-with-resource statement will auto close the connection.
 	}
 
-	// Account getters
-	public int getAccountId() {
-		return accountId;
-	}
-
-	public String getAccountName() {
-		return accountName;
-	}
-
-	public String getAccountEmail() {
-		return accountEmail;
-	}
-
-	public String getAccountPassword() {
-		return accountPassword;
-	}
-
-	public String getAccountRole() {
-		return accountRole;
-	}
-
-	public int getAccountProjectId() {
-		return accountProjectId;
-	}
-
-	// Project getters
-	public int getProjectId() {
-		return projectId;
-	}
-
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public String getProjectDescription() {
-		return projectDescription;
-	}
-
-	// Bug getters
-	public int getBugId() {
-		return bugId;
-	}
-	public String getBugName() {
-		return bugName;
-	}
-	public String getBugDescr() {
-		return bugDescr;
-	}
-	public int getBugProjectId() {
-		return bugProjectId;
-	}
-	public String getBugDateLog () {
-		return bugDateLog;
-	}
-	public String getBugDateCompl() {
-		return bugDateCompl;
-	}
-	public String getBugNameLog() {
-		return bugNameLog;
-	}
-	public String getBugNameWorker() {
-		return bugNameWorker;
-	}
-	public Boolean getBugComplStatus() {
-		return bugComplStatus;
+     //Getters
+	
+	public Accounts getAccount() {
+		Accounts newAccount = new Accounts(accountId,accountName,accountEmail,accountPassword,accountRole,accountProjectId);
+		return newAccount;
 	}
 	
+	public Projects getProject() {
+		Projects newProject = new Projects(projectId,projectName,projectDescription);
+		return newProject;
+	}
+	
+	public Bugs getBug() {
+		Bugs newBug = new Bugs(bugId,bugName,bugDescr,bugProjectId,bugDateLog,bugDateCompl,bugNameLog,bugNameWorker,bugComplStatus);	
+		return newBug;
+	}
 	
 	// Used to create new account record by finding the new account id -1
 	private static final String LastAccountId_Query = "SELECT TOP 1 accountid FROM accounts ORDER BY accountid DESC;";
@@ -216,5 +165,9 @@ public class SQLReadRecord {
 		}
 		return lastBugId;
 	}
+	
+
+	
+	
 	
 }

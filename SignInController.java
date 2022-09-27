@@ -66,12 +66,12 @@ public class SignInController implements Initializable{
 			emailEntered = emailEnter.getText();//Error
 			passwordEntered = passwordEnter.getText();
 			for (int i = 0; i < readRecord.getLastAccountId() + 1; i++) {
-				readRecord.readRecordById(0, i);
-				emailFound = readRecord.getAccountEmail();
-				passwordFound = readRecord.getAccountPassword();
+				readRecord.setReadRecordById(0, i);
+				emailFound = readRecord.getAccount().getEmail();
+				passwordFound = readRecord.getAccount().getPassword();
 				if (emailEntered.equals(emailFound) && passwordEntered.equals(passwordFound)) {
 					checkCredentials = true;
-					currentUserAccountId = readRecord.getAccountId();
+					currentUserAccountId = readRecord.getAccount().getAccountId();
 				}
 			}
 

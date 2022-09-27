@@ -84,16 +84,6 @@ public class IntroController{// implements Initializable{
 		stage.show();
 	}
 	
-	//Temporary
-	public void toSummary(ActionEvent event) throws IOException {
-		System.out.println("Summary");
-		root = FXMLLoader.load(getClass().getResource("SummaryScene.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
-	
 	
 }
 

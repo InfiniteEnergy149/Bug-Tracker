@@ -11,7 +11,7 @@ public class SQLUpdateRecord {
 	// where id = ?;";
 	private static final String ACCOUNT_QUERY = "update accounts set fullName = ?, email = ?, password = ?,role = ?,projectId = ? where accountid =?";
 	private static final String PROJECT_QUERY = "update projects set name = ?, description = ? where projectid =?";
-	private static final String BUG_QUERY = "update bugs set bugName, bugDescr, projectId,dateLog,dateCompl,nameLog,nameWorker,complStatus where bugid =?";
+	private static final String BUG_QUERY = "update bugs set bugName=?, bugDescr=?, projectId=?,dateLog=?,dateCompl=?,nameLog=?,nameWorker=?,complStatus=? where bugid =?";
 
 	// public static void main(String[] argv) throws SQLException,
 	// ClassNotFoundException {

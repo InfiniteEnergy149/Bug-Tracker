@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Bugs {
+	SQLReadRecord readRecord = new SQLReadRecord();
 	private IntegerProperty bugId = new SimpleIntegerProperty(); // bug Id
 	private StringProperty bugName = new SimpleStringProperty(); // bug name
 	private StringProperty bugDescr = new SimpleStringProperty(); // bug description
@@ -102,6 +103,15 @@ public class Bugs {
 		public void setProjectId(Integer value) {
 			projectId.set(value);
 		}
+		
+		public String getProjectIdName() {
+			try {
+				readRecord.setReadRecordById(1, projectId.get());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return readRecord.getProject().getName();
+		}
 
 	// Date Logged
 	public final StringProperty dateLogProperty() {
@@ -184,6 +194,10 @@ public class Bugs {
 		return complStatus.get();
 	}
 
+	public String getComplStatusStr() {
+		return String.valueOf(complStatus.get());
+	}    
+	
 	public void setComplStatus(Boolean value) {
 		complStatus.set(value);
 	}

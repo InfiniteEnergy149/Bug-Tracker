@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SummaryController">
    <children>
-      <VBox layoutX="-1.0" layoutY="-6.0" prefHeight="407.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
+      <VBox alignment="CENTER" layoutX="-1.0" layoutY="-6.0" prefHeight="407.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
          <children>
-            <ImageView fitHeight="58.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="62.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../BT.png" />
                </image>
@@ -40,5 +40,37 @@
             </Label>
          </children>
       </HBox>
+      <Label layoutX="210.0" layoutY="156.0" text="Num of Projects:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="210.0" layoutY="249.0" text="Num of Compl Bugs:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="401.0" layoutY="244.0" text="Num of Uncompl Bugs:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="429.0" layoutY="156.0" text="Num of Bugs:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="projectNum" layoutX="237.0" layoutY="183.0" text="projectNum">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="complNum" layoutX="242.0" layoutY="276.0" text="complNum">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="uncomplNum" layoutX="416.0" layoutY="271.0" text="UncomplNum">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="bugNum" layoutX="429.0" layoutY="183.0" text="bugNum">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>

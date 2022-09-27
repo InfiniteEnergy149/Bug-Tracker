@@ -131,15 +131,15 @@ public class Accounts {
 		public String getProjectName() {
 			String projectName;
 			try {
-				readRecord.readRecordById(1,getProjectId());
-				readRecord.getProjectName();
+				readRecord.setReadRecordById(1,getProjectId());
+				readRecord.getProject().getName();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (readRecord.getProjectName() == null) {
+			if (readRecord.getProject().getName() == null) {
 				projectName = "None Selected";
 			}else {
-				projectName = readRecord.getProjectName();
+				projectName = readRecord.getProject().getName();
 			}
 			return projectName;
 		}

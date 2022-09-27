@@ -45,7 +45,7 @@ public class ProfileController {//implements Initializable {
 	ComboBox<String> projectBox;
 
 	ArrayList<String> projListItems;
-
+	ObservableList<String> listOfProjectsUpdate;
 	int currentUserAccountId;
 	
 	public void setCurrentUserAccountId(int id) {
@@ -64,47 +64,47 @@ public class ProfileController {//implements Initializable {
 		// currentUserAccountId RESETS TO 0 WHEN CONTROLLER IS CALLED AGAIN
 		System.out.println("E" + currentUserAccountId);
 		try {
-			readRecord.readRecordById(0, currentUserAccountId);
+			readRecord.setReadRecordById(0, currentUserAccountId);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} //
 
-		name.setText(readRecord.getAccountName());
-		email.setText(readRecord.getAccountEmail());
-		role.setText(readRecord.getAccountRole());
-		password.setText(readRecord.getAccountPassword());
+		name.setText(readRecord.getAccount().getFullName());
+		email.setText(readRecord.getAccount().getEmail());
+		role.setText(readRecord.getAccount().getRole());
+		password.setText(readRecord.getAccount().getPassword());
 
-		int currentAccountProjectId = readRecord.getAccountProjectId();
+		int currentAccountProjectId = readRecord.getAccount().getProjectId();
 		try {
-			readRecord.readRecordById(1, currentAccountProjectId);
+			readRecord.setReadRecordById(1, currentAccountProjectId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		String currentAccountProjectName;
-		if (readRecord.getProjectName() == null) {
+		if (readRecord.getProject().getName() == null) {
 			currentAccountProjectName = "None selected";
 		} else {
-			currentAccountProjectName = readRecord.getProjectName();
+			currentAccountProjectName = readRecord.getProject().getName();
 		}
 		// Label ProjectName = new Label(currentAccountProjectName);
 
 		// Change Project
 		// Label, listView, Change Project
 		// arrayList of project names
-		projectBox = new ComboBox();
+	
 
-		int defaultIndex = readRecord.getAccountProjectId();
+		int defaultIndex = readRecord.getAccount().getProjectId();
 		// Set default value
-		projectBox.setValue(currentAccountProjectName); // ERROR
-		projectBox.setPrefSize(200, 100);
+			
+		projectBox.setValue(currentAccountProjectName); 
 
 		projListItems = new ArrayList<>();
 		try {
 			projListItems.add("None Selected");
 			for (int i = 1; i < readRecord.getLastProjectId() + 1; i++) {
-				readRecord.readRecordById(1, i);
-				projListItems.add(readRecord.getProjectName());
+				readRecord.setReadRecordById(1, i);
+				projListItems.add(readRecord.getProject().getName());
 				System.out.println("*");
 
 			}
@@ -114,9 +114,11 @@ public class ProfileController {//implements Initializable {
 
 		// Update ListView
 		System.out.println("()");
-		ObservableList<String> listOfProjectsUpdate = FXCollections.observableArrayList(projListItems);
+		listOfProjectsUpdate = FXCollections.observableArrayList(projListItems);
 		projectBox.setItems(listOfProjectsUpdate);
 		System.out.println(")(");
+		
+		
 
 	}
 	
@@ -134,7 +136,7 @@ public class ProfileController {//implements Initializable {
 
 		// update account project
 		// System.out.println("****************" + name.getText());
-		Accounts text = new Accounts(readRecord.getAccountId(), name.getText(), email.getText(), password.getText(),
+		Accounts text = new Accounts(readRecord.getAccount().getAccountId(), name.getText(), email.getText(), password.getText(),
 				role.getText(), comboIndex);
 		try {
 			updateRecord.updateRecord(text);
@@ -149,9 +151,7 @@ public class ProfileController {//implements Initializable {
 		// ***************DELETING THE CURRENT ACCOUNT
 		// Correct current user account id
 		// setCurrentUserID(getCurrentUserID()-1);
-		Accounts thisAccount = new Accounts(readRecord.getAccountId(), readRecord.getAccountName(),
-				readRecord.getAccountEmail(), readRecord.getAccountPassword(), readRecord.getAccountRole(),
-				readRecord.getAccountProjectId());
+		Accounts thisAccount = readRecord.getAccount();
 		try {
 			deleteRecord.deleteRecord(thisAccount);
 			// primaryStage.setScene(introDesign(primaryStage));
