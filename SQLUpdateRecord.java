@@ -84,8 +84,7 @@ public class SQLUpdateRecord {
 			SQLConnection.printSQLException(e);
 		}
 
-		// Step 4: try-with-resource statement will auto close the connection.
+		
 	}
 }
 
-//updateRecord.updateRecord(Accounts);

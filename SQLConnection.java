@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLConnection {
-
+//change to local file
+	//
     private static String jdbcURL = "jdbc:hsqldb:file:C:/Users/Cdani/eclipse-workspace/BugTracker/src/HSQLDB/DB;hsqldb.lock_file=false";
     private static String jdbcUsername = "SA";
     private static String jdbcPassword = "";

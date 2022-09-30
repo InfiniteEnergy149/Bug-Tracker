@@ -12,9 +12,6 @@ public class Main extends Application {
 	Scene scene;
 	// Creating the Graphic User Interface
 
-	// Store currentUserAccountId
-	int currentUserAccountId;
-
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
@@ -24,17 +21,6 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void setCurrentUserAccountId(int id) {
-		this.currentUserAccountId = id;
-		System.out.println("C" + currentUserAccountId);
-	}
-
-	public int getCurrentUserAccountId() {
-		System.out.println("D" + currentUserAccountId);
-
-		return this.currentUserAccountId;
 	}
 
 	public static void main(String[] args) {

@@ -5,7 +5,7 @@ module ErrorTesting {
 	requires javafx.base;
 	requires javafx.fxml;
 	requires java.xml;
-	
+	//requires de.jensd.fx.fontawesomefx.fontawesome;
 	opens application to javafx.graphics, javafx.fxml;
 }
 

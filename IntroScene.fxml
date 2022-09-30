@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="331.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IntroController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="331.0" style="-fx-background-color: skyblue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IntroController">
    <children>
-      <Label fx:id="label" layoutX="64.0" layoutY="186.0" prefHeight="75.0" prefWidth="222.0" text="Bug Tracker" textAlignment="CENTER">
+      <Label fx:id="label" layoutX="64.0" layoutY="186.0" prefHeight="75.0" prefWidth="222.0" text="Bug Tracker" textAlignment="CENTER" textFill="DARKBLUE">
          <font>
             <Font name="Bookman Old Style Italic" size="36.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="127.0" layoutY="273.0" onAction="#toSignIn" text="Sign In" underline="true">
+      <Hyperlink layoutX="127.0" layoutY="273.0" onAction="#toSignIn" text="Sign In" textFill="DARKBLUE" underline="true">
          <font>
             <Font name="Bodoni MT" size="20.0" />
          </font>
       </Hyperlink>
-      <Hyperlink layoutX="124.0" layoutY="329.0" onAction="#toSignUp" text="Sign Up" underline="true">
+      <Hyperlink layoutX="124.0" layoutY="329.0" onAction="#toSignUp" text="Sign Up" textFill="DARKBLUE" underline="true">
          <font>
             <Font name="Bodoni MT" size="20.0" />
          </font>

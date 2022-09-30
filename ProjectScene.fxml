@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,29 +12,65 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController">
+<Pane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController">
    <children>
-      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="402.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
+      <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="450.0" prefWidth="90.0" style="-fx-background-color: steelblue;">
          <children>
-            <ImageView fitHeight="93.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../BT.png" />
                </image>
             </ImageView>
-            <Label prefHeight="41.0" prefWidth="138.0" text="  BUG TRACKER" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="138.0" text="BUG TRACKER" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Bodoni MT Black" size="14.0" />
+                  <Font name="Bodoni MT Black" size="10.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#toSummary" prefHeight="51.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Summary" />
-            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="50.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Profile" />
-            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Accounts" />
-            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: yellow;" text="Projects" />
-            <Button mnemonicParsing="false" onAction="#toBug" prefHeight="53.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Bugs" />
-            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: cyan;" text="Log Out" />
+            <Button mnemonicParsing="false" onAction="#toSummary" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Summary" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Profile" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Accounts" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USERS" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: skyblue;" text="Projects" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toBug" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Bugs" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BUG" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: deepskyblue;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" />
+               </graphic></Button>
          </children>
       </VBox>
-      <Label layoutX="132.0" prefHeight="68.0" prefWidth="469.0" style="-fx-background-color: steelblue;" text="                      Projects" textAlignment="CENTER">
+      <Label layoutX="90.0" prefHeight="60.0" prefWidth="711.0" style="-fx-background-color: steelblue;" text="                      Projects" textAlignment="CENTER">
          <font>
             <Font name="Bodoni MT Black" size="24.0" />
          </font>

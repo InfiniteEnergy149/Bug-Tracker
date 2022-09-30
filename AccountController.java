@@ -141,6 +141,7 @@ public class AccountController {
 
 
 	// Switch Scenes
+	@FXML
 	public void toSummary(ActionEvent event) throws IOException {
 
 		loader = new FXMLLoader(getClass().getResource("SummaryScene.fxml"));
@@ -149,7 +150,7 @@ public class AccountController {
 		summaryScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toProfile(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProfileScene.fxml"));
 		root = loader.load();
@@ -157,7 +158,7 @@ public class AccountController {
 		profileScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toProject(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProjectScene.fxml"));
 		root = loader.load();
@@ -165,7 +166,7 @@ public class AccountController {
 		projectScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toBug(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("BugScene.fxml"));
 		root = loader.load();
@@ -173,9 +174,8 @@ public class AccountController {
 		bugScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toIntro(ActionEvent event) throws IOException {
-		System.out.println("LogOut");
 		root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		switchScene(root, event);
 	}

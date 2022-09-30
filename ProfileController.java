@@ -22,12 +22,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
-public class ProfileController {//implements Initializable {
+public class ProfileController {
 	SQLReadRecord readRecord = new SQLReadRecord();
 	SQLDeleteRecord deleteRecord = new SQLDeleteRecord();
 	SQLUpdateRecord updateRecord = new SQLUpdateRecord();
 	FXMLLoader loader;
-	// private SignInController signInScene;
 
 	Parent root;
 	Stage stage;
@@ -48,27 +47,23 @@ public class ProfileController {//implements Initializable {
 	ObservableList<String> listOfProjectsUpdate;
 	int currentUserAccountId;
 	
+	@FXML
 	public void setCurrentUserAccountId(int id) {
 		this.currentUserAccountId = id;
 		initial();
 	}
 
+	@FXML
 	public void initial() {
-		// public void start() {
-		// NOT GETTING CURRENT ID
-
-	//	System.out.println("+=_-" + signInScene.getCurrentUserID());
-	//	currentUserAccountId = signInScene.getCurrentUserID();
-		System.out.println("B" + currentUserAccountId);
-		System.out.println();
+		
 		// currentUserAccountId RESETS TO 0 WHEN CONTROLLER IS CALLED AGAIN
-		System.out.println("E" + currentUserAccountId);
+		
 		try {
 			readRecord.setReadRecordById(0, currentUserAccountId);
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		} //
-
+		}
+		// Set Labels
 		name.setText(readRecord.getAccount().getFullName());
 		email.setText(readRecord.getAccount().getEmail());
 		role.setText(readRecord.getAccount().getRole());
@@ -87,11 +82,6 @@ public class ProfileController {//implements Initializable {
 		} else {
 			currentAccountProjectName = readRecord.getProject().getName();
 		}
-		// Label ProjectName = new Label(currentAccountProjectName);
-
-		// Change Project
-		// Label, listView, Change Project
-		// arrayList of project names
 	
 
 		int defaultIndex = readRecord.getAccount().getProjectId();
@@ -105,7 +95,7 @@ public class ProfileController {//implements Initializable {
 			for (int i = 1; i < readRecord.getLastProjectId() + 1; i++) {
 				readRecord.setReadRecordById(1, i);
 				projListItems.add(readRecord.getProject().getName());
-				System.out.println("*");
+				
 
 			}
 		} catch (Exception e) {
@@ -113,11 +103,9 @@ public class ProfileController {//implements Initializable {
 		}
 
 		// Update ListView
-		System.out.println("()");
+	
 		listOfProjectsUpdate = FXCollections.observableArrayList(projListItems);
 		projectBox.setItems(listOfProjectsUpdate);
-		System.out.println(")(");
-		
 		
 
 	}
@@ -135,7 +123,6 @@ public class ProfileController {//implements Initializable {
 		}
 
 		// update account project
-		// System.out.println("****************" + name.getText());
 		Accounts text = new Accounts(readRecord.getAccount().getAccountId(), name.getText(), email.getText(), password.getText(),
 				role.getText(), comboIndex);
 		try {
@@ -148,7 +135,7 @@ public class ProfileController {//implements Initializable {
 
 	@FXML
 	public void deleteAccount(ActionEvent event) {
-		// ***************DELETING THE CURRENT ACCOUNT
+		//DELETING THE CURRENT ACCOUNT
 		// Correct current user account id
 		// setCurrentUserID(getCurrentUserID()-1);
 		Accounts thisAccount = readRecord.getAccount();
@@ -163,15 +150,15 @@ public class ProfileController {//implements Initializable {
 
 
 	// Switch Scenes
+	@FXML
 	public void toSummary(ActionEvent event) throws IOException {
-
 		loader = new FXMLLoader(getClass().getResource("SummaryScene.fxml"));
 		root = loader.load();
 		SummaryController summaryScene = loader.getController();
 		summaryScene.setCurrentUserAccountId(currentUserAccountId);
         switchScene(root, event);
 	}
-
+@FXML
 	public void toAccount(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("AccountScene.fxml"));
 		root = loader.load();
@@ -179,7 +166,7 @@ public class ProfileController {//implements Initializable {
 		accountScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+@FXML
 	public void toProject(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProjectScene.fxml"));
 		root = loader.load();
@@ -187,7 +174,7 @@ public class ProfileController {//implements Initializable {
 		projectScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+@FXML
 	public void toBug(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("BugScene.fxml"));
 		root = loader.load();
@@ -195,9 +182,8 @@ public class ProfileController {//implements Initializable {
 		bugScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+@FXML
 	public void toIntro(ActionEvent event) throws IOException {
-		System.out.println("LogOut");
 		root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		switchScene(root, event);
 	}

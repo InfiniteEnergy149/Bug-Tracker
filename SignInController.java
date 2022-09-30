@@ -53,7 +53,6 @@ public class SignInController implements Initializable{
 	}
 	
 	public void submit(ActionEvent event) throws IOException {
-		System.out.println("Submit");
 		Boolean checkCredentials = false;
 		// read accounts from database
 		// check if username and password matches an existing account
@@ -81,14 +80,10 @@ public class SignInController implements Initializable{
 		}
 		setCurrentUserID(currentUserAccountId);
 		
-	
-		System.out.println("A" + currentUserAccountId );
 		if (checkCredentials == true) {
 			//Hide Scene
 			//notice.getScene().getWindow().hide();
 			
-			
-			System.out.println("Sumbit");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileScene.fxml"));
 			root = loader.load();
 			ProfileController profileScene = loader.getController();
@@ -103,7 +98,7 @@ public class SignInController implements Initializable{
 		} else {
 			notice.setText("Email and Password don't match records");
 		}
-		// if exist then save account id in variable and sned to summary scene
+		// if exist then save account id in variable and send to summary scene
 		// if not then send warning that username and password don't match records
 		
 	}
@@ -111,7 +106,6 @@ public class SignInController implements Initializable{
 
 
 	public void intro(ActionEvent event) throws IOException {
-		System.out.println("Back");
 		Parent root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

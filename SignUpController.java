@@ -37,7 +37,6 @@ public class SignUpController {
 	Label notice;
 	
 	public void submit(ActionEvent event) throws IOException {
-		System.out.println("Submit");
 		
 				int accountId;
 				// CHECK THAT DATA/ACCOUNTS ARENT DUPLICATED
@@ -67,7 +66,6 @@ public class SignUpController {
 	}
 	
 	public void intro(ActionEvent event) throws IOException {
-		System.out.println("Back");
 		Parent root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

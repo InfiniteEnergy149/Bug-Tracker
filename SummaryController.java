@@ -40,16 +40,16 @@ public class SummaryController {
 	Label bugNum;
 	//@FXML
 	//ComboBox<String> projectNames;
-	@FXML
-	Label projComplNum;
-	@FXML
-	Label projUncomplNum;
-	@FXML
-	Label projBugNum;
-	@FXML
-	BarChart<?,?> projectBarChart;
-	NumberAxis axisBugs;
-	CategoryAxis  axisProjects;
+	//@FXML
+	//Label projComplNum;
+	//@FXML
+	//Label projUncomplNum;
+	//@FXML
+	//Label projBugNum;
+	//@FXML
+	//BarChart<?,?> projectBarChart;
+	//NumberAxis axisBugs;
+	//CategoryAxis  axisProjects;
 
 	int currentUserAccountId;
 	int comboBoxProjectId;
@@ -173,6 +173,7 @@ public class SummaryController {
 	}
 
 	// Switch Scenes
+	@FXML
 	public void toProfile(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProfileScene.fxml"));
 		root = loader.load();
@@ -180,7 +181,7 @@ public class SummaryController {
 		profileScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toAccount(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("AccountScene.fxml"));
 		root = loader.load();
@@ -188,7 +189,7 @@ public class SummaryController {
 		accountScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toProject(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProjectScene.fxml"));
 		root = loader.load();
@@ -196,7 +197,7 @@ public class SummaryController {
 		projectScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toBug(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("BugScene.fxml"));
 		root = loader.load();
@@ -204,13 +205,12 @@ public class SummaryController {
 		bugScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toIntro(ActionEvent event) throws IOException {
-		System.out.println("LogOut");
 		root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		switchScene(root, event);
 	}
-
+	
 	public void switchScene(Parent root, ActionEvent event) {
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

@@ -10,13 +10,6 @@ public class SQLDeleteRecord {
 	private static final String BUG_QUERY = "delete from bugs where bugid = ?";
 	SQLUpdateRecord updateRecord = new SQLUpdateRecord();
 	SQLReadRecord readRecord = new SQLReadRecord();
-	//DisplayScenes displayScenes = new DisplayScenes();
-	
-	// public static void main(String[] argv) throws SQLException,
-	// ClassNotFoundException {
-	// SQLDeleteRecord deleteExample = new SQLDeleteRecord();
-	// deleteExample.deleteRecord();
-	// }
 
 	public void deleteRecord(Object dataType) throws Exception {
 

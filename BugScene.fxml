@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -14,57 +15,111 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="400.0" prefWidth="908.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BugController">
+<Pane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BugController">
    <children>
-      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="402.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
+      <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="90.0" style="-fx-background-color: steelblue;">
          <children>
-            <ImageView fitHeight="93.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../BT.png" />
                </image>
             </ImageView>
-            <Label prefHeight="41.0" prefWidth="138.0" text="  BUG TRACKER" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="41.0" prefWidth="138.0" text="BUG TRACKER" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Bodoni MT Black" size="14.0" />
+                  <Font name="Bodoni MT Black" size="10.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#toSummary" prefHeight="51.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Summary" />
-            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="50.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Profile" />
-            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Accounts" />
-            <Button mnemonicParsing="false" onAction="#toProject" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Projects" />
-            <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="138.0" style="-fx-background-color: yellow;" text="Bugs" />
-            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: cyan;" text="Log Out" />
+            <Button mnemonicParsing="false" onAction="#toSummary" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Summary" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Profile" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Accounts" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USERS" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toProject" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: steelblue;" text="Projects" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: skyblue;" text="Bugs" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BUG" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: deepskyblue;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" />
+               </graphic></Button>
          </children>
       </VBox>
-      <Label layoutX="132.0" prefHeight="68.0" prefWidth="469.0" style="-fx-background-color: steelblue;" text="                        Bugs " textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="88.0" prefHeight="60.0" prefWidth="715.0" style="-fx-background-color: steelblue;" text="Bugs" textAlignment="CENTER">
          <font>
             <Font name="Bodoni MT Black" size="24.0" />
          </font>
       </Label>
-      <TabPane fx:id="tabPane" layoutX="137.0" layoutY="67.0" prefHeight="333.0" prefWidth="769.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="91.0" layoutY="60.0" prefHeight="390.0" prefWidth="709.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="summaryTab" onSelectionChanged="#SummaryTabPane" text="Summary">
                <content>
-                  <Pane prefHeight="305.0" prefWidth="741.0">
+                  <Pane prefHeight="305.0" prefWidth="686.0">
                      <children>
-                        <TextField fx:id="searchEnter" layoutX="163.0" layoutY="13.0" promptText="Search" />
-                        <Label fx:id="numOfProjects" layoutX="33.0" layoutY="38.0" text="No of Projects:" />
-                        <Label fx:id="numOfCompl" layoutX="163.0" layoutY="38.0" text="No of Compl:" />
-                        <Label fx:id="numOfUncompl" layoutX="265.0" layoutY="38.0" text="No of Uncompl:" />
-                        <Label fx:id="numOfBugs" layoutX="370.0" layoutY="38.0" text="No of Bugs:" />
-                        <TableView fx:id="fullBugList" layoutX="5.0" layoutY="61.0" prefHeight="230.0" prefWidth="760.0">
+                        <TextField fx:id="searchEnter" layoutX="318.0" layoutY="21.0" promptText="Search">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="14.0" />
+                           </font></TextField>
+                        <Label fx:id="numOfProjects" layoutX="79.0" layoutY="60.0" text="No of Projects:">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="numOfCompl" layoutX="233.0" layoutY="60.0" text="No of Compl:">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="numOfUncompl" layoutX="384.0" layoutY="60.0" text="No of Uncompl:">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="numOfBugs" layoutX="534.0" layoutY="60.0" text="No of Bugs:">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="14.0" />
+                           </font></Label>
+                        <TableView fx:id="fullBugList" layoutX="10.0" layoutY="91.0" prefHeight="268.0" prefWidth="689.0">
                            <columns>
-                              <TableColumn fx:id="tbName" prefWidth="105.60003662109375" text="Name" />
-                              <TableColumn fx:id="tbDescr" prefWidth="124.79997253417969" text="Descr" />
-                              <TableColumn fx:id="tbNameWorker" prefWidth="91.199951171875" text="NameWorker" />
-                              <TableColumn fx:id="tbNameLogged" prefWidth="104.0" text="Name Logged" />
-                              <TableColumn fx:id="tbDateCompl" prefWidth="76.79998779296875" text="Date Compl" />
-                              <TableColumn fx:id="tbDateLogged" prefWidth="85.5999755859375" text="Date Logged" />
+                              <TableColumn fx:id="tbName" prefWidth="76.800048828125" text="Name" />
+                              <TableColumn fx:id="tbDescr" prefWidth="83.199951171875" text="Descr" />
+                              <TableColumn fx:id="tbNameWorker" prefWidth="94.4000244140625" text="NameWorker" />
+                              <TableColumn fx:id="tbNameLogged" prefWidth="98.4000244140625" text="Name Logged" />
+                              <TableColumn fx:id="tbDateCompl" prefWidth="85.60003662109375" text="Date Compl" />
+                              <TableColumn fx:id="tbDateLogged" prefWidth="86.39996337890625" text="Date Logged" />
                               <TableColumn fx:id="tbCompl" prefWidth="88.0" text="Compl Status" />
-                              <TableColumn fx:id="tbProject" prefWidth="88.0" text="Project" />
+                              <TableColumn fx:id="tbProject" prefWidth="75.2000732421875" text="Project" />
                            </columns>
                         </TableView>
-                        <Label layoutX="82.0" layoutY="17.0" text="Search Details" />
+                        <Label layoutX="188.0" layoutY="26.0" text="Search Details">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="14.0" />
+                           </font></Label>
                      </children>
                   </Pane>
                </content>

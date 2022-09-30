@@ -1,76 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SummaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SummaryController">
    <children>
-      <VBox alignment="CENTER" layoutX="-1.0" layoutY="-6.0" prefHeight="407.0" prefWidth="138.0" style="-fx-background-color: steelblue;">
+      <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="90.0" style="-fx-background-color: steelblue;">
          <children>
-            <ImageView fitHeight="62.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../BT.png" />
                </image>
             </ImageView>
-            <Label prefHeight="62.0" prefWidth="174.0" text="  BUG TRACKER" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="90.0" text="BUG TRACKER" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Bodoni MT Black" size="14.0" />
+                  <Font name="Bodoni MT Black" size="10.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="138.0" style="-fx-background-color: yellow;" text="Summary" />
-            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="50.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Profile" />
-            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Accounts" />
-            <Button mnemonicParsing="false" onAction="#toProject" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: PALETURQUOISE;" text="Projects" />
-            <Button mnemonicParsing="false" onAction="#toBug" prefHeight="53.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Bugs" />
-            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: cyan;" text="Log Out" />
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color: skyblue;" text="Summary" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toProfile" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color: steelblue;" text="Profile" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toAccount" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color: steelblue;" text="Accounts" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USERS" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toProject" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color: steelblue;" text="Projects" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toBug" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color: steelblue;" text="Bugs" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BUG" />
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#toIntro" prefHeight="35.0" prefWidth="155.0" style="-fx-background-color: deepskyblue;" text="Log Out" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" />
+               </graphic></Button>
          </children>
       </VBox>
-      <HBox layoutX="137.0" prefHeight="78.0" prefWidth="464.0" style="-fx-background-color: steelblue;">
-         <children>
-            <Label prefHeight="83.0" prefWidth="463.0" text="                  Summary" textAlignment="CENTER">
-               <font>
-                  <Font name="Bodoni MT Black" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <Label layoutX="210.0" layoutY="156.0" text="Num of Projects:">
+      <Label layoutX="190.0" layoutY="143.0" text="Num of Projects:">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label layoutX="210.0" layoutY="249.0" text="Num of Compl Bugs:">
+      <Label layoutX="190.0" layoutY="257.0" text="Num of Compl Bugs:">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label layoutX="401.0" layoutY="244.0" text="Num of Uncompl Bugs:">
+      <Label layoutX="515.0" layoutY="260.0" text="Num of Uncompl Bugs:">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label layoutX="429.0" layoutY="156.0" text="Num of Bugs:">
+      <Label layoutX="503.0" layoutY="147.0" text="Num of Bugs:">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label fx:id="projectNum" layoutX="237.0" layoutY="183.0" text="projectNum">
+      <Label fx:id="projectNum" layoutX="217.0" layoutY="170.0" text="projectNum">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label fx:id="complNum" layoutX="242.0" layoutY="276.0" text="complNum">
+      <Label fx:id="complNum" layoutX="222.0" layoutY="284.0" text="complNum">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label fx:id="uncomplNum" layoutX="416.0" layoutY="271.0" text="UncomplNum">
+      <Label fx:id="uncomplNum" layoutX="530.0" layoutY="287.0" text="UncomplNum">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label fx:id="bugNum" layoutX="429.0" layoutY="183.0" text="bugNum">
+      <Label fx:id="bugNum" layoutX="503.0" layoutY="174.0" text="bugNum">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
+      <Label alignment="CENTER" layoutX="90.0" prefHeight="60.0" prefWidth="710.0" style="-fx-background-color: steelblue;" text="Summary" textAlignment="CENTER">
+         <font>
+            <Font name="Bodoni MT Black" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

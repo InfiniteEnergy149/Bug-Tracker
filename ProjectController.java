@@ -117,10 +117,23 @@ public class ProjectController {
 
 	}
 
-	public void addProject(ActionEvent event) {
+	public void addProject(ActionEvent event) throws Exception {
+		
+	
+		boolean nameExists = false;
 		if (nameEnter.getText().equals("") || descriptionEnter.getText().equals("")) {
 			notice.setText("name and description must be used");
 		} else {
+				//Makes sure project name doesn't already exist
+			for (int i = 0;i<readRecord.getLastProjectId();i++) {
+				readRecord.setReadRecordById(1,i+1);
+				if (nameEnter.getText().equals(readRecord.getProject().getName())) {
+					nameExists = true;
+					notice.setText("name already exists");
+				}
+			}
+			
+			if (nameExists == false) {
 			// Add to arraylist projectItems
 			Projects newProject;
 			try {
@@ -136,7 +149,7 @@ public class ProjectController {
 				e.printStackTrace();
 				System.out.println("New project not added");
 			}
-
+			}
 		}
 	}
 
@@ -192,15 +205,15 @@ public class ProjectController {
 	}
 
 	// Switch Scenes
+	@FXML
 	public void toSummary(ActionEvent event) throws IOException {
-
 		loader = new FXMLLoader(getClass().getResource("SummaryScene.fxml"));
 		root = loader.load();
 		SummaryController summaryScene = loader.getController();
 		summaryScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toAccount(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("AccountScene.fxml"));
 		root = loader.load();
@@ -208,7 +221,7 @@ public class ProjectController {
 		accountScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toBug(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("BugScene.fxml"));
 		root = loader.load();
@@ -216,7 +229,7 @@ public class ProjectController {
 		bugScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toProfile(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProfileScene.fxml"));
 		root = loader.load();
@@ -224,9 +237,8 @@ public class ProjectController {
 		profileScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toIntro(ActionEvent event) throws IOException {
-		System.out.println("LogOut");
 		root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		switchScene(root, event);
 	}

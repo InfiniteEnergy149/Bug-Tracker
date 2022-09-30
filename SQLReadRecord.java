@@ -58,7 +58,7 @@ public class SQLReadRecord {
 					accountPassword = rs.getString("password");
 					accountRole = rs.getString("role");
 					accountProjectId = rs.getInt("projectid");
-					System.out.println(accountId + "," + accountName + "," + accountEmail + "," + accountPassword + "," + accountRole  + "," + accountProjectId);
+					//System.out.println(accountId + "," + accountName + "," + accountEmail + "," + accountPassword + "," + accountRole  + "," + accountProjectId);
 				}
 			} else if (dataType == 1) { //Projects
 				//"select projectId, name, description from projects where projectid =?";
@@ -72,7 +72,7 @@ public class SQLReadRecord {
 					 projectName = rs.getString("name");
 					projectDescription = rs.getString("description");
 					
-					System.out.println(projectId + "," + projectName + "," + projectDescription);
+					//System.out.println(projectId + "," + projectName + "," + projectDescription);
 				}
 			} else if (dataType == 2){ //Bugs
 				//"select bugId, bugName, bugDescr, projectId,dateLog,dateCompl,nameLog,nameWorker,complStatus from bugs where bugid =?";
@@ -91,8 +91,8 @@ public class SQLReadRecord {
 					 bugNameLog = rs.getString("nameLog");
 					  bugNameWorker = rs.getString("nameWorker");
 					  bugComplStatus = rs.getBoolean("complStatus");
-					System.out.println(bugId + "," + bugName + "," + bugDescr + "," + bugProjectId + "," + bugDateLog  
-							+ "," + bugDateCompl + "," + bugNameLog + "," + bugNameWorker + "," + bugComplStatus);
+					//System.out.println(bugId + "," + bugName + "," + bugDescr + "," + bugProjectId + "," + bugDateLog  
+					//		+ "," + bugDateCompl + "," + bugNameLog + "," + bugNameWorker + "," + bugComplStatus);
 				}
 			} else {
 				System.out.println("Number should've been between 0 and 2 exclusively");
@@ -134,8 +134,7 @@ public class SQLReadRecord {
 		preparedStatement = connection.prepareStatement(LastAccountId_Query);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
-			lastAccountId = resultSet.getInt("accountid"); // ERROR HERE
-			//System.out.println(lastAccountid);
+			lastAccountId = resultSet.getInt("accountid"); 
 		}
 		return lastAccountId;
 	}
@@ -147,8 +146,7 @@ public class SQLReadRecord {
 		preparedStatement = connection.prepareStatement(LastProjectId_Query);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
-			lastProjectId = resultSet.getInt("projectid"); // ERROR HERE
-			//System.out.println(lastAccountid);
+			lastProjectId = resultSet.getInt("projectid"); 
 		}
 		return lastProjectId;
 	}
@@ -160,8 +158,7 @@ public class SQLReadRecord {
 		preparedStatement = connection.prepareStatement(LastBugId_Query);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
-			lastBugId = resultSet.getInt("bugid"); // ERROR HERE
-			//System.out.println(lastAccountid);
+			lastBugId = resultSet.getInt("bugid"); 
 		}
 		return lastBugId;
 	}

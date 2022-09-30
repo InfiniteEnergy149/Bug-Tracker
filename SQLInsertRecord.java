@@ -79,7 +79,7 @@ public class SQLInsertRecord {
 				preparedStatement.setBoolean(9, bug.getComplStatus());//COMPLETED
 			}
 			
-			//System.out.println("eghj" + preparedStatement);
+			
 			// Step 3: Execute the query or update query
 			preparedStatement.executeUpdate();
 			connection.close();
@@ -90,6 +90,6 @@ public class SQLInsertRecord {
 			SQLConnection.printSQLException(e);
 		}
 
-		// Step 4: try-with-resource statement will auto close the connection.
+
 	}
 }

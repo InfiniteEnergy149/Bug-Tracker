@@ -83,16 +83,31 @@ public class BugController {
 	Label numOfBugs;
 	@FXML
 	ComboBox<String> cbProject;
-	// @FXML
-	// ComboBox<String> tableColNames;
 	@FXML
 	TableView<Bugs> projectBugList;
-
 	@FXML
 	Tab tabAddBug;
-
+	//update bug
 	@FXML
 	Tab tabUpdateBug;
+	@FXML
+	ComboBox<String> thisProjectCB;
+	@FXML
+	Label updNotice;
+    @FXML
+    TextField updNameEnter;
+    @FXML
+    TextField updDescrEnter;
+    @FXML
+    TextField updNameWorkerEnter;
+    @FXML
+    TextField updNameLoggedEnter;
+    @FXML
+    TextField updDateComplEnter;
+    @FXML
+    TextField updDateLoggedEnter;
+    @FXML
+    ComboBox<String> updComplStatusEnter;
 
 	public void setCurrentUserAccountId(int id) {
 		this.currentUserAccountId = id;
@@ -167,16 +182,6 @@ public class BugController {
 		ObservableList<Bugs> bugListUpdate = FXCollections.observableList(bugItems);
 		fullBugList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		fullBugList.setItems(bugListUpdate);
-
-		/*
-		 * ArrayList<String> projectNames = new ArrayList<>(); for (int i = 0; i <
-		 * readRecord.getLastProjectId(); i++) { readRecord.setReadRecordById(1, i + 1);
-		 * projectNames.add(readRecord.getProject().getName()); }
-		 * 
-		 * ObservableList<String> projectNameList =
-		 * FXCollections.observableList(projectNames);
-		 * cbProject.setItems(projectNameList); cbProject.setValue(projectNames.get(0));
-		 */
 
 		// Search Bar
 		ObservableList<Bugs> dataList = FXCollections.observableArrayList(bugItems);
@@ -518,6 +523,7 @@ public class BugController {
 	boolean complStatus = false;
 
 	// AddBug Tab
+	@FXML
 	public void AddBugSubmit(ActionEvent event) {
 		// Find project Number
 		try {
@@ -568,6 +574,7 @@ public class BugController {
 	}
 
 	// Add Bug
+	@FXML
 	public void toAddBugTab(ActionEvent event) {
 		// Set project choice box value
 		projChoiceCB.setValue(cbProject.getValue());
@@ -576,25 +583,8 @@ public class BugController {
 
 	}
 
-	@FXML
-	ComboBox<String> thisProjectCB;
-	@FXML
-	Label updNotice;
-    @FXML
-    TextField updNameEnter;
-    @FXML
-    TextField updDescrEnter;
-    @FXML
-    TextField updNameWorkerEnter;
-    @FXML
-    TextField updNameLoggedEnter;
-    @FXML
-    TextField updDateComplEnter;
-    @FXML
-    TextField updDateLoggedEnter;
-    @FXML
-    ComboBox<String> updComplStatusEnter;
 	// Update Bug
+	@FXML
 	public void toUpdateBugTab(ActionEvent event) throws Exception {
 		thisProjectCB.setValue(cbProject.getValue());
 		tabPane.getSelectionModel().select(tabUpdateBug);
@@ -625,7 +615,7 @@ public class BugController {
 		   updComplStatusEnter.setValue(readRecord.getBug().getComplStatusStr());
 		  
 	}
-	
+	@FXML
 	public void updateBug(ActionEvent event) throws Exception {
 	
 	// Update bug
@@ -653,15 +643,15 @@ public class BugController {
 
 }
 	// Switch Scenes
+	@FXML
 	public void toSummary(ActionEvent event) throws IOException {
-
 		loader = new FXMLLoader(getClass().getResource("SummaryScene.fxml"));
 		root = loader.load();
 		SummaryController summaryScene = loader.getController();
 		summaryScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toAccount(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("AccountScene.fxml"));
 		root = loader.load();
@@ -669,7 +659,7 @@ public class BugController {
 		accountScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toProject(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProjectScene.fxml"));
 		root = loader.load();
@@ -677,7 +667,7 @@ public class BugController {
 		projectScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toProfile(ActionEvent event) throws IOException {
 		loader = new FXMLLoader(getClass().getResource("ProfileScene.fxml"));
 		root = loader.load();
@@ -685,9 +675,8 @@ public class BugController {
 		profileScene.setCurrentUserAccountId(currentUserAccountId);
 		switchScene(root, event);
 	}
-
+	@FXML
 	public void toIntro(ActionEvent event) throws IOException {
-		System.out.println("LogOut");
 		root = FXMLLoader.load(getClass().getResource("IntroScene.fxml"));
 		switchScene(root, event);
 	}
