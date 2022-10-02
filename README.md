@@ -34,3 +34,6 @@ Previews
 ![BugScenes - Summary](https://user-images.githubusercontent.com/66020481/193452705-0bff5e1c-6fc0-47d0-a2f3-4301116b1392.PNG)
 ![BugScenes - Update Bug](https://user-images.githubusercontent.com/66020481/193452706-2caae92c-55de-4bdc-a0e0-87c57a9e475b.PNG)
 
+Call read-only Application
+Use the BugTrackerShow.jar along with the javafx.controls,base,fxml,graphics jars where the you add the javafx jars are added to the module path.
+E.g. java --module-path "<MODULE PATH TO THE 4 JAVAFX JARS>" --add-modules javafx.controls,javafx.base,javafx.graphics,javafx.fxml -jar BugTrackerShow.jar
