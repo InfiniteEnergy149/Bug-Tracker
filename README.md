@@ -1,5 +1,6 @@
 # Bug-Tracker
-To track bugs to make it easier to resolve errors in a given program
+Aim - To track bugs to make it easier to resolve errors in a given program
+------------
 
 This project is a proof if concept that I can create and work an application in java that requires fxml and the use of a database.
 
@@ -21,6 +22,7 @@ Some skills shown include:
 
 
 Previews
+---------
 
 ![IntroScene](https://user-images.githubusercontent.com/66020481/193452696-6d2fda9e-e720-469b-9351-22699f26e623.PNG)
 ![SignInScene](https://user-images.githubusercontent.com/66020481/193452709-56645467-5010-4a66-a7e8-618959fd015a.PNG)
@@ -34,6 +36,11 @@ Previews
 ![BugScenes - Summary](https://user-images.githubusercontent.com/66020481/193452705-0bff5e1c-6fc0-47d0-a2f3-4301116b1392.PNG)
 ![BugScenes - Update Bug](https://user-images.githubusercontent.com/66020481/193452706-2caae92c-55de-4bdc-a0e0-87c57a9e475b.PNG)
 
-Call read-only Application
+Call read-only Application:
+---------------------------
+
+
 Use the BugTrackerShow.jar along with the javafx.controls,base,fxml,graphics jars where the you add the javafx jars are added to the module path.
+
+
 E.g. java --module-path "<MODULE PATH TO THE 4 JAVAFX JARS>" --add-modules javafx.controls,javafx.base,javafx.graphics,javafx.fxml -jar BugTrackerShow.jar
