@@ -40,7 +40,7 @@ Call read-only Application:
 ---------------------------
 
 
-Use the BugTrackerShow.jar along with the javafx.controls,base,fxml,graphics jars where the you add the javafx jars are added to the module path.
+Use the BugTrackerShow.jar along with the javafx-sdk-18.0.2 where the you add the javafx-sdk-18.0.2/lib folder to the module path.
 
 
-E.g. java --module-path "<MODULE PATH TO THE 4 JAVAFX JARS>" --add-modules javafx.controls,javafx.base,javafx.graphics,javafx.fxml -jar BugTrackerShow.jar
+E.g. java --module-path "<MODULE PATH TO javafx-sdk-18.0.2/lib>" --add-modules javafx.controls,javafx.base,javafx.graphics,javafx.fxml -jar BugTrackerShow.jar
